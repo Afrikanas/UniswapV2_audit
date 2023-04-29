@@ -1,0 +1,713 @@
+{
+  "Set block.timestamp": {
+    "prefix": "vm.warp",
+    "body": [
+      "vm.warp(${1:uint256});"
+    ],
+    "description": "Set block.timestamp"
+  },
+  "Set block.number": {
+    "prefix": "vm.roll",
+    "body": [
+      "vm.roll(${1:uint256});"
+    ],
+    "description": "Set block.number"
+  },
+  "Set block.basefee": {
+    "prefix": "vm.fee",
+    "body": [
+      "vm.fee(${1:uint256});"
+    ],
+    "description": "Set block.basefee"
+  },
+  "Set block.difficulty": {
+    "prefix": "vm.difficulty",
+    "body": [
+      "vm.difficulty(${1:uint256});"
+    ],
+    "description": "Set block.difficulty"
+  },
+  "Set block.chainid": {
+    "prefix": "vm.chainId",
+    "body": [
+      "vm.chainId(${1:uint256});"
+    ],
+    "description": "Set block.chaindid"
+  },
+  "Loads a storage slot from an address": {
+    "prefix": "vm.load",
+    "body": [
+      "vm.load(${1:address}, ${2:bytes32 slot});"
+    ],
+    "description": "Loads a storage slot from an address"
+  },
+  "Stores a value to an address' storage slot": {
+    "prefix": "vm.store",
+    "body": [
+      "vm.store(${1:address}, ${2:bytes32 slot},${3:bytes32 value});"
+    ],
+    "description": "Stores a value to an address' storage slot"
+  },
+  "Signs data": {
+    "prefix": "vm.sign",
+    "body": [
+      "vm.sign(${1:uint256 privateKey},${2:bytes32 digest} )"
+    ],
+    "description": "Signs data"
+  },
+  "Computes address for a given private key": {
+    "prefix": "vm.addr",
+    "body": [
+      "vm.roll(${1:uint256 privateKey});"
+    ],
+    "description": "Computes address for a given private key"
+  },
+  "Derive a private key from a provided mnemonic string,": {
+    "prefix": "vm.deriveKey",
+    "body": [
+      "vm.deriveKey(${1:string},${2:uint32},)"
+    ],
+    "description": " Derive a private key from a provided mnemonic string, or mnemonic file path, at the derivation path m/44'/60'/0'/0/{index}."
+  },
+  "Gets the nonce of an account": {
+    "prefix": "vm.getNonce",
+    "body": [
+      "vm.getNonce(${1:address account});"
+    ],
+    "description": "Gets the nonce of an account"
+  },
+  "Sets the nonce of an account": {
+    "prefix": "vm.setNonce",
+    "body": [
+      "vm.setNonce(${1:address account}, ${2:uint64 nonce});"
+    ],
+    "description": "Sets the nonce of an account"
+  },
+  "Performs a foreign function call via terminal": {
+    "prefix": "vm.ffi",
+    "body": [
+      "vm.ffi(${1:string[],});"
+    ],
+    "description": "Performs a foreign function call via terminal"
+  },
+  "Set environment variables, (name, value)": {
+    "prefix": "vm.setEnv",
+    "body": [
+      "vm.setEnv(${1:string},${2:string});"
+    ],
+    "description": "Set environment variables, (name, value)"
+  },
+  "Read environment variables, (name) => (value)": {
+    "prefix": "vm.env",
+    "body": [
+      "vm.env${1:type}(${2:string});"
+    ],
+    "description": "Read environment variables, (name) => (value)"
+  },
+  "Read environment variables as arrays, (name, delim) => (value[],)": {
+    "prefix": "vm.env",
+    "body": [
+      "vm.env${1:type}(${2:string},${3:string});"
+    ],
+    "description": "Read environment variables as arrays, (name, delim) => (value[],)"
+  },
+  "Read environment variables with default value, (name, value) => (value)": {
+    "prefix": "vm.envOr",
+    "body": [
+      "vm.envOr(${1:string},${2:<type>});"
+    ],
+    "description": "Read environment variables with default value, (name, value) => (value)"
+  },
+  "Read environment variables as arrays with default value, (name, value[],) => (value[],)": {
+    "prefix": "vm.envOr",
+    "body": [
+      "vm.envOr(${1:string},${2:<type>}[],)"
+    ],
+    "description": "Read environment variables as arrays with default value, (name, value[],) => (value[],)"
+  },
+  "Convert Solidity types to strings": {
+    "prefix": "vm.toString",
+    "body": [
+      "vm.toString(${1:<type>});"
+    ],
+    "description": "Convert Solidity types to strings"
+  },
+  "Sets the *next* call's msg.sender to be the input address": {
+    "prefix": "vm.prank",
+    "body": [
+      "vm.prank(${1:address});",
+      "vm.prank(${1:address sender},${2:address origin});"
+    ],
+    "description": "Sets the *next* call's msg.sender to be the input address"
+  },
+  "Sets all subsequent calls' msg.sender to be the input address untill 'stopPrank' is called": {
+    "prefix": "vm.startPrank",
+    "body": [
+      "vm.startPrank(${1:address});",
+      "vm.startPrank(${1:address},${2:address});"
+    ],
+    "description": "Sets all subsequent calls' msg.sender to be the input address untill 'stopPrank' is called"
+  },
+  "Resets subsequent calls' msg.sender to be `address(this)`": {
+    "prefix": "vm.stopPrank",
+    "body": [
+      "vm.stopPrank()"
+    ],
+    "description": "Resets subsequent calls' msg.sender to be `address(this)`"
+  },
+  "Sets an address' balance": {
+    "prefix": "vm.deal",
+    "body": [
+      "vm.deal(${1:address who},${2:uint256 newBalance});"
+    ],
+    "description": "Sets an address' balance"
+  },
+  "Sets an address' code": {
+    "prefix": "vm.etch",
+    "body": [
+      "vm.etch(${1:address who},${2:bytes code});"
+    ],
+    "description": "Sets an address' code"
+  },
+  "Expects an error on next call": {
+    "prefix": "vm.expectRevert",
+    "body": [
+      "vm.expectRevert()",
+      "vm.expectRevert(bytes4 message)",
+      "vm.expectRevert(bytes calldata message)"
+    ],
+    "description": "Expects an error on next call"
+  },
+  "Record all storage reads and writes": {
+    "prefix": "vm.record",
+    "body": [
+      "vm.record()"
+    ],
+    "description": "Record all storage reads and writes"
+  },
+  "Gets all accessed reads and write slot from a recording session, for a given address": {
+    "prefix": "vm.accesses",
+    "body": [
+      "vm.accesses(${1:address});"
+    ],
+    "description": "Gets all accessed reads and write slot from a recording session, for a given address"
+  },
+  "Record all the transaction logs": {
+    "prefix": "vm.recordLogs",
+    "body": [
+      "vm.recordLogs()"
+    ],
+    "description": "Record all the transaction logs"
+  },
+  "Gets all the recorded logs": {
+    "prefix": "vm.getRecordedLogs",
+    "body": [
+      "vm.getRecordedLogs()"
+    ],
+    "description": "Gets all the recorded logs"
+  },
+  "Checks supplied address against emitting contract.": {
+    "prefix": "vm.expectEmit",
+    "body": [
+      "vm.expectEmit(${1:bool},${2:bool},${3:bool},${4:bool});"
+    ],
+    "description": "Checks supplied address against emitting contract."
+  },
+  "Mocks a call to an address, returning specified data.": {
+    "prefix": "vm.mockCall",
+    "body": [
+      "vm.mockCall(${1:address where},${2:bytes calldta data},${3:bytes calldata retdata});",
+      "vm.mockCall(${1:address where},${2:uint256 value},${3:bytes calldta data},${4:bytes calldata retdata});"
+    ],
+    "description": "Mocks a call to an address, returning specified data."
+  },
+  "Clears all mocked calls": {
+    "prefix": "vm.clearMockedCalls",
+    "body": [
+      "vm.clearMockedCalls()"
+    ],
+    "description": "Clears all mocked calls"
+  },
+  "Expect a call to an address with the specified calldata.": {
+    "prefix": "vm.expectCall",
+    "body": [
+      "vm.expectCall(${1:address},${2:bytes});"
+    ],
+    "description": "Expect a call to an address with the specified calldata."
+  },
+  "Calldata can either be strict or a partial match": {
+    "prefix": "vm.expectCall",
+    "body": [
+      "vm.expectCall(${1:address},${2:bytes},${3:bool});"
+    ],
+    "description": "Calldata can either be strict or a partial match"
+  },
+  "Gets the _creation_ bytecode from an artifact file. Takes in the relative path to the json file": {
+    "prefix": "vm.getCode",
+    "body": [
+      "vm.getCode(${1:string});"
+    ],
+    "description": "Gets the _creation_ bytecode from an artifact file. Takes in the relative path to the json file"
+  },
+  "Gets the _deployed_ bytecode from an artifact file. Takes in the relative path to the json file": {
+    "prefix": "vm.getDeployedCode",
+    "body": [
+      "vm.getDeployedCode(${1:string});"
+    ],
+    "description": "Gets the _deployed_ bytecode from an artifact file. Takes in the relative path to the json file"
+  },
+  "Label an address in test traces": {
+    "prefix": "vm.label",
+    "body": [
+      "vm.label(${1:address},${2:string});"
+    ],
+    "description": "Label an address in test traces"
+  },
+  "When fuzzing, generate new inputs if conditional not met": {
+    "prefix": "vm.assume",
+    "body": [
+      "vm.assume(${1:bool});"
+    ],
+    "description": "When fuzzing, generate new inputs if conditional not met"
+  },
+  "Set block.coinbase (who)": {
+    "prefix": "vm.coinbase",
+    "body": [
+      "vm.coinbase(${1:address});"
+    ],
+    "description": "Set block.coinbase (who)"
+  },
+  "Using the address that calls the test contract or the address provided": {
+    "prefix": "vm.broadcast",
+    "body": [
+      "vm.broadcast()",
+      "vm.broadcast(${address who})",
+      "vm.broadcast(${uint256 privateKey})"
+    ],
+    "description": "Using the address that calls the test contract or the address provided"
+  },
+  "Stops collecting onchain transactions": {
+    "prefix": "vm.stopBroadcast",
+    "body": [
+      "vm.stopBroadcast()"
+    ],
+    "description": "Stops collecting onchain transactions"
+  },
+  "Reads the entire content of file to string, (path) => (data)": {
+    "prefix": "vm.readFile",
+    "body": [
+      "vm.readFile(${1:string});"
+    ],
+    "description": "Reads the entire content of file to string, (path) => (data)"
+  },
+  "Get the path of the current project": {
+    "prefix": "vm.projectPath",
+    "body": [
+      "vm.projectPath(${1:string});"
+    ],
+    "description": "Get the path of the current project"
+  },
+  "Reads next line of file to string, (path) => (line)": {
+    "prefix": "vm.readLine",
+    "body": [
+      "vm.readLine(${1:string});"
+    ],
+    "description": "Reads next line of file to string, (path) => (line)"
+  },
+  "Writes data to file, creating a file if it does not exist, and entirely replacing its contents if it does.": {
+    "prefix": "vm.writeFile",
+    "body": [
+      "vm.writeFile(${1:string},${2:string});"
+    ],
+    "description": "Writes data to file, creating a file if it does not exist, and entirely replacing its contents if it does."
+  },
+  "Writes line to file, creating a file if it does not exist.": {
+    "prefix": "vm.writeLine",
+    "body": [
+      "vm.writeLine(${1:string},${2:string});"
+    ],
+    "description": "Writes line to file, creating a file if it does not exist."
+  },
+  "Closes file for reading, resetting the offset and allowing to read it from beginning with readLine.": {
+    "prefix": "vm.closeFile",
+    "body": [
+      "vm.closeFile(${1:string});"
+    ],
+    "description": "Closes file for reading, resetting the offset and allowing to read it from beginning with readLine."
+  },
+  "Removes file. This cheatcode will revert in the following situations, but is not limited to just these cases:": {
+    "prefix": "vm.removeFile",
+    "body": [
+      "vm.removeFile(${1:string});"
+    ],
+    "description": "Removes file. This cheatcode will revert in the following situations, but is not limited to just these cases:"
+  },
+  "Return the value(s) that correspond to 'key'": {
+    "prefix": "vm.parseJson",
+    "body": [
+      "vm.parseJson(${1:string},${2:string});",
+      "vm.parseJson(${1:string});"
+    ],
+    "description": "Return the value(s) that correspond to 'key'"
+  },
+  "Snapshot the current state of the evm.": {
+    "prefix": "vm.snapshot",
+    "body": [
+      "vm.snapshot()"
+    ],
+    "description": "Snapshot the current state of the evm."
+  },
+  "Revert the state of the evm to a previous snapshot": {
+    "prefix": "vm.revertTo",
+    "body": [
+      "vm.revertTo(${1:uint256});"
+    ],
+    "description": "Revert the state of the evm to a previous snapshot"
+  },
+  "Creates a new fork with the given endpoint and block,": {
+    "prefix": "vm.createFork",
+    "body": [
+      "vm.createFork(${1:string},${2:uint256 block});",
+      "vm.createFork(${1:string});"
+    ],
+    "description": "Creates a new fork with the given endpoint and block,"
+  },
+  "Creates _and_ also selects a new fork with the given endpoint and block,": {
+    "prefix": "vm.createSelectFork",
+    "body": [
+      "vm.createSelectFork(${1:string},${2:uint256});"
+    ],
+    "description": "Creates _and_ also selects a new fork with the given endpoint and block,"
+  },
+  "Creates _and_ also selects a new fork with the given endpoint and the _latest_ block,": {
+    "prefix": "vm.createSelectFork",
+    "body": [
+      "vm.createSelectFork(${1:string});"
+    ],
+    "description": "Creates _and_ also selects a new fork with the given endpoint and the _latest_ block,"
+  },
+  "Takes a fork identifier created by `createFork` and sets the corresponding forked state as active.": {
+    "prefix": "vm.selectFork",
+    "body": [
+      "vm.selectFork(${1:uint256});"
+    ],
+    "description": "Takes a fork identifier created by `createFork` and sets the corresponding forked state as active."
+  },
+  "Returns the currently active fork Reverts if no fork is currently active": {
+    "prefix": "vm.activeFork",
+    "body": [
+      "vm.activeFork()"
+    ],
+    "description": "Returns the currently active fork Reverts if no fork is currently active"
+  },
+  "Updates the currently active fork to given block number This is similar to `roll` but for the currently active fork,": {
+    "prefix": "vm.rollFork",
+    "body": [
+      "vm.rollFork(${1:uint256 blockNumber});"
+    ],
+    "description": "Updates the currently active fork to given block number This is similar to `roll` but for the currently active fork,"
+  },
+  "Updates the given fork to given block number": {
+    "prefix": "vm.rollFork",
+    "body": [
+      "vm.rollFork(${1:uint256 forkId},${2:uint256 blockNumber});"
+    ],
+    "description": "Updates the given fork to given block number"
+  },
+  "Fetches the given transaction from the active fork and executes it on the current state": {
+    "prefix": "vm.transact",
+    "body": [
+      "vm.transact(${1:bytes32});"
+    ],
+    "description": "Fetches the given transaction from the active fork and executes it on the current state"
+  },
+  "Fetches the given transaction from the given fork and executes it on the current state": {
+    "prefix": "vm.transact",
+    "body": [
+      "vm.transact(${1:uint256},${2:bytes32});"
+    ],
+    "description": "Fetches the given transaction from the given fork and executes it on the current state"
+  },
+  "Marks that the account(s) should use persistent storage across fork swaps in a multifork setup, meaning, changes made to the state": {
+    "prefix": "vm.makePersistent",
+    "body": [
+      "vm.makePersistent(${1:address});"
+    ],
+    "description": "Marks that the account(s) should use persistent storage across fork swaps in a multifork setup, meaning, changes made to the state"
+  },
+  "Revokes persistent status from the address, previously added via `makePersistent`": {
+    "prefix": "vm.revokePersistent",
+    "body": [
+      "vm.revokePersistent(${1:address});"
+    ],
+    "description": "Revokes persistent status from the address, previously added via `makePersistent`"
+  },
+  "Returns true if the account is marked as persistent": {
+    "prefix": "vm.isPersistent",
+    "body": [
+      "vm.isPersistent(${1:address});"
+    ],
+    "description": "Returns true if the account is marked as persistent"
+  },
+  "Returns the RPC url for the given alias": {
+    "prefix": "vm.rpcUrl",
+    "body": [
+      "vm.rpcUrl(${1:string});"
+    ],
+    "description": "Returns the RPC url for the given alias"
+  },
+  "Returns all rpc urls and their aliases `[alias, url],[],`": {
+    "prefix": "vm.rpcUrls",
+    "body": [
+      "vm.rpcUrls();"
+    ],
+    "description": "Returns all rpc urls and their aliases `[alias, url],[],`"
+  },
+  "Emit a log event": {
+    "prefix": "std.log",
+    "body": [
+      "log_${1:type}(${2:type});"
+    ],
+    "description": "Emit a log event"
+  },
+  "Emit a log array": {
+    "prefix": "std.log",
+    "body": [
+      "log_array(${1:uint256/int256[],});"
+    ],
+    "description": "Emit a log array"
+  },
+  "Emit a named log array": {
+    "prefix": "std.log",
+    "body": [
+      "log_named_array(${1:string},${2:uint256/int256[],});"
+    ],
+    "description": "Emit a named log array"
+  },
+  "Emit a named log ": {
+    "prefix": "std.log",
+    "body": [
+      "log_named_{1:type}(${2:string},${3:<type>});"
+    ],
+    "description": "Emit a named log "
+  },
+  "Assert the `condition` is true": {
+    "prefix": "std.assertTrue",
+    "body": [
+      "assertTrue(${1:bool condition});"
+    ],
+    "description": "Assert the `condition` is true"
+  },
+  "Assert the 'condition' is false": {
+    "prefix": "std.assertFalse",
+    "body": [
+      "assertFalse(${1:bool condition});"
+    ],
+    "description": "Assert the 'condition' is false"
+  },
+  "Fail the test with the given message": {
+    "prefix": "std.fail",
+    "body": [
+      "fail(${1:string message});"
+    ],
+    "description": "Fail the test with the given message"
+  },
+  "Assert `a` is equal to `b`": {
+    "prefix": "std.assertEq",
+    "body": [
+      "assertEq(${1:<type> a},${2:<type> b});"
+    ],
+    "description": "Assert `a` is equal to `b`"
+  },
+  "Assert absolute value of `a` is approximately equal to `b`": {
+    "prefix": "std.assertApproxEqAbs",
+    "body": [
+      "assertApproxEqAbs(${1:uint256 a},${2:uint256 b},${3:uint256 maxDelta});"
+    ],
+    "description": "Assert absolute value of `a` is approximately equal to `b`"
+  },
+  " Assert relative value of `a` is approximately equal to `b`": {
+    "prefix": "std.assertApproxEqRel",
+    "body": [
+      "assertApproxEqRel(${1:uint256 a},${2:uint256 b},${3:uint256 maxDelta});"
+    ],
+    "description": " Assert relative value of `a` is approximately equal to `b`"
+  },
+  "Assert  `a` is greater than `b`": {
+    "prefix": "std.assertGt",
+    "body": [
+      "assertGt(${1:<type> a},${2:<type> b});"
+    ],
+    "description": "Assert  `a` is greater than `b`"
+  },
+  "Assert  `a` is less than `b`": {
+    "prefix": "std.assertLt",
+    "body": [
+      "assertLt(${1:<type> a},${2:<type> b});"
+    ],
+    "description": "Assert  `a` is less than `b`"
+  },
+  "Assert  `a` is less than or equal to `b`": {
+    "prefix": "std.assertLe",
+    "body": [
+      "assertLe(${1:<type> a},${2:<type> b});"
+    ],
+    "description": "Assert  `a` is less than or equal to `b`"
+  },
+  "Std set block timestamp": {
+    "prefix": "std.skip",
+    "body": [
+      "skip(${1:uint256 time});"
+    ],
+    "description": "Std set block timestamp"
+  },
+  "Std set block timestamp back": {
+    "prefix": "std.rewind",
+    "body": [
+      "rewind(${1:uint256 time});"
+    ],
+    "description": "Std set block timestamp back"
+  },
+  "Std set the message sender": {
+    "prefix": "std.hoax",
+    "body": [
+      "hoax(${1:address who});",
+      "hoax(${1:address who}, ${2:uint256 give});",
+      "hoax(${1:address who}, ${2:address origin});"
+    ],
+    "description": "Std set the message sender"
+  },
+  "std start hoax": {
+    "prefix": "std.startHoax",
+    "body": [
+      "startHoax(${1:address who});",
+      "startHoax(${1:address who}, ${2:uint256 give});",
+      "startHoax(${1:address who}, ${2:address origin});"
+    ],
+    "description": "std start hoax"
+  },
+  "Std deploy code": {
+    "prefix": "std.deployCode",
+    "body": [
+      "deployCode(${1:string what});",
+      "deployCode(${1:string what}, ${2:bytes args});",
+      "deployCode(${1:string what}, ${2:uint256 val});",
+      "deployCode(${1:string what}, ${2:bytes args}, ${3:uint256 val});"
+    ],
+    "description": "Std deploy code"
+  },
+  "Std deal": {
+    "prefix": "std.deal",
+    "body": [
+      "deal(${1:address to}, ${2:uint256 give});",
+      "deal(${1:address token}, ${2:address to}, ${3:uint256 give});",
+      "deal(${1:address token}, ${2:address to}, ${3:uint256 give}, ${4:bool adjust});"
+    ],
+    "description": "Std deal"
+  },
+  "std bound": {
+    "prefix": "std.bound",
+    "body": [
+      "bound(${1:uint256 x}, ${2:uint256 min}, ${3:uint256 max});"
+    ],
+    "description": "std bound"
+  },
+  "std Change prank": {
+    "prefix": "std.changePrank",
+    "body": [
+      "changePrank(${1:address who});"
+    ],
+    "description": "std Change prank"
+  },
+  "std maker address": {
+    "prefix": "std.makeAddr",
+    "body": [
+      "makeAddr(${1:string name});"
+    ],
+    "description": "std maker address"
+  },
+  "std maker address and key": {
+    "prefix": "std.makeAddrAndKey",
+    "body": [
+      "makeAddrAndKey(${1:string name});"
+    ],
+    "description": "std maker address and key"
+  },
+  "Assertion errors": {
+    "prefix": "stdError.assertionError",
+    "body": [
+      "stdError.assertionError;"
+    ],
+    "description": "Assertion errors"
+  },
+  "arithmentic errors": {
+    "prefix": "stdError.arithmeticError",
+    "body": [
+      "stdError.arithmeticError;"
+    ],
+    "description": "arithmentic errors"
+  },
+  "Division error": {
+    "prefix": "stdError.divisionError",
+    "body": [
+      "stdError.divisionError;"
+    ],
+    "description": "Division error"
+  },
+  "enum conversion error": {
+    "prefix": "stdError.enumConversionError",
+    "body": [
+      "stdError.enumConversionError;"
+    ],
+    "description": "enum conversion error"
+  },
+  "encode storage error": {
+    "prefix": "stdError.encodeStorageError",
+    "body": [
+      "stdError.encodeStorageError;"
+    ],
+    "description": "encode storage error"
+  },
+  "pop error": {
+    "prefix": "stdError.popError",
+    "body": [
+      "stdError.popError;"
+    ],
+    "description": "pop error"
+  },
+  "index out of bounds error": {
+    "prefix": "stdError.indexOOBError",
+    "body": [
+      "stdError.indexOOBError;"
+    ],
+    "description": "index out of bounds error"
+  },
+  "memory overflow error": {
+    "prefix": "stdError.memOverflowError",
+    "body": [
+      "stdError.memOverflowError;"
+    ],
+    "description": "memory overflow error"
+  },
+  "zero variable error": {
+    "prefix": "stdError.zeroVarError",
+    "body": [
+      "stdError.zeroVarError;"
+    ],
+    "description": "zero variable error"
+  },
+  "Std Storage": {
+    "prefix": "stdstore",
+    "body": [
+      "stdstore",
+      "    .target(${1:address target})",
+      "    .sig(${2:string sig})",
+      "    .with_key(${3:address key})",
+      "    .depth(${4:uint256 depth})",
+      "    .checked_write(${5:uint256 val});",
+      "    .find();",
+      "    .read_${6:type}();"
+    ],
+    "description": "Std Storage"
+  }
+}
